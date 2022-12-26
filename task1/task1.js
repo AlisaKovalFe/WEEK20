@@ -114,32 +114,44 @@ document.addEventListener('DOMContentLoaded', function(event) {
             </div>
             <div id="wrapRating">
                 <label for="rating">Оцените героя</label>
-                <input value="1" name="rating" id="rating" type="radio" >
-                <input value="2" name="rating" type="radio">
-                <input value="3" name="rating" type="radio">
-                <input value="4" name="rating" type="radio">
-                <input value="5" name="rating" type="radio">
+                <input value="1/5" name="rating" type="radio" >
+                <input value="2/5" name="rating" type="radio">
+                <input value="3/5" name="rating" type="radio">
+                <input value="4/5" name="rating" type="radio">
+                <input value="5/5" name="rating" type="radio">
             </div>
             
         </div>`
     }
     document.querySelector('#heroesContainer').innerHTML = heroesContent
     addRate() 
+    // ratingStorage()
 })
 
 function addRate() {
 
     let inputs = document.querySelectorAll('input')
-    let rating = ''
+    let rating = []
     for (let input of inputs) {
         input.addEventListener('change', function() {
             if (input.checked) {
                 rating = ''
                 rating += `<div>${input.value}</div>`
-                document.querySelector('#wrapRating').innerHTML = rating
+                document.querySelector('#wrapRating').innerHTML = 'Рейтинг фильма: ' + rating
+
+                if (localStorage.getItem('rating') == null) {
+                    localStorage.setItem('rating', input.value)
+                }
             } 
         })       
     }
-    return rating
+    
+    // return rating
 }
+
+// let ratingStorage = () => {
+//     if (localStorage.getItem('rating') != null)
+//     document.querySelector('input').value = rating
+// }
+
 
