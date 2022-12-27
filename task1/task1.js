@@ -112,15 +112,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 <div class="innerContent">друзья: ${hero.friends}</div>
                 <div class="innerContent">суперсилы: ${hero.superPower}</div>
             </div>
-            <div id="wrapRating">
+            <div>
                 <label for="rating">Оцените героя</label>
                 <input value="1/5" name="rating" type="radio" >
                 <input value="2/5" name="rating" type="radio">
                 <input value="3/5" name="rating" type="radio">
                 <input value="4/5" name="rating" type="radio">
                 <input value="5/5" name="rating" type="radio">
-            </div>
-            
+            </div>            
         </div>`
     }
     document.querySelector('#heroesContainer').innerHTML = heroesContent
@@ -131,23 +130,43 @@ document.addEventListener('DOMContentLoaded', function(event) {
 function addRate() {
 
     let inputs = document.querySelectorAll('input')
-    let rating = []
+    let rating = ''
     for (let input of inputs) {
         input.addEventListener('change', function() {
             if (input.checked) {
                 rating = ''
                 rating += `<div>${input.value}</div>`
-                document.querySelector('#wrapRating').innerHTML = 'Рейтинг фильма: ' + rating
+                input.parentNode.innerHTML = 'Рейтинг фильма: ' + rating
 
-                if (localStorage.getItem('rating') == null) {
-                    localStorage.setItem('rating', input.value)
-                }
+                input.value = LocalStorage.Get('rating')
+                console.log(input.value);
+                console.log(LocalStorage.Get('rating'));
+                LocalStorage.Save('rating', input.value)
+
+
+                // if (localStorage.getItem('rating') == null) {
+                //     localStorage.setItem('rating', input.value)
+                // }
+
+
             } 
         })       
     }
     
-    // return rating
 }
+class LocalStorage {
+    static Save(key, value) {
+        let string = JSON.stringify(value);
+        localStorage.setItem(key, string);
+    }
+
+    static Get(key) {
+        let value = localStorage.getItem(key);
+        return JSON.parse(value);
+    }
+}
+
+
 
 // let ratingStorage = () => {
 //     if (localStorage.getItem('rating') != null)
