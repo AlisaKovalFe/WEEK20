@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(e) {
-    getCheracter('2')
+    getCheracter('2') // здесь можно выбрать значение персонажа 
 })
 
 function getCheracter(number) {
@@ -21,36 +21,20 @@ function getCheracter(number) {
         document.querySelector('.location').innerHTML = `<span class="bold">локация: </span>` + character.location.name
 
 
-        // let ep = []
-        // console.log(ep)
-        // ep.push(character.episode[0])
-        // console.log(ep)
-        // ep.push(character.episode[character.episode.length-1])
-        // console.log(ep)
+        let episode = []
+        episode.push(character.episode[0])
 
-        let episodes = []
-        for (let i = 0; i < character.episode.length; i += character.episode.length-1) {
-            episodes.push(character.episode[i])
-            console.log(episodes)
-
-
-            // episodes.push(character[character.episode.length-1])
-            // console.log(episodes);
-            
-            // console.log(l)
-            // console.log(episodes.length)
-            // console.log(episodes);
+        if (character.episode.length > 1) {
+            episode.push(character.episode[character.episode.length-1])
         }
 
-
         document.querySelector('.episode').innerHTML = `
-        <div>посмотри первый эпизод со мной <a href="${episodes[0]}">тут</a></div>
-        <div>последний тут ${episodes.join(', ')[1]}</div>`
+        <div>api первого эпизода со мной <a href="${episode[0]}">тут</a></div>
+        <div>а последнего <a href="${episode[1]}">тут</a></div>`
         
-        // 'посмотри первый и последний эпизод со мной тут ' + episodes.join(', ')
         
     })
-    // .catch(err => console.log(err))
+    .catch(err => console.log(err))
 }
 
 
