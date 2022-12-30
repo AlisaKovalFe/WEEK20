@@ -136,7 +136,7 @@ function addRate() {
                 rating = ''
                 rating += `<div>${input.value}</div>`
 
-                let hero = input.parentElement.previousElementSibling.firstElementChild.innerHTML
+                let hero = 'Рейтинг ' + input.parentElement.previousElementSibling.firstElementChild.innerHTML
                 
                 input.parentElement.innerHTML = 'Рейтинг фильма: ' + rating
 
