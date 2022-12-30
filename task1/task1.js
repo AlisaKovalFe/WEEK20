@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
     document.querySelector('#heroesContainer').innerHTML = heroesContent
     addRate() 
-    // ratingStorage()
 })
 
 function addRate() {
@@ -136,41 +135,20 @@ function addRate() {
             if (input.checked) {
                 rating = ''
                 rating += `<div>${input.value}</div>`
-                input.parentNode.innerHTML = 'Рейтинг фильма: ' + rating
 
-                input.value = LocalStorage.Get('rating')
-                console.log(input.value);
-                console.log(LocalStorage.Get('rating'));
-                LocalStorage.Save('rating', input.value)
+                let hero = input.parentElement.previousElementSibling.firstElementChild.innerHTML
+                
+                input.parentElement.innerHTML = 'Рейтинг фильма: ' + rating
 
+                localStorage.setItem( hero, input.value)
 
-                // if (localStorage.getItem('rating') == null) {
-                //     localStorage.setItem('rating', input.value)
-                // }
-
-
+                // Проверка
+                console.log(localStorage.getItem(hero))
             } 
         })       
     }
     
 }
-class LocalStorage {
-    static Save(key, value) {
-        let string = JSON.stringify(value);
-        localStorage.setItem(key, string);
-    }
 
-    static Get(key) {
-        let value = localStorage.getItem(key);
-        return JSON.parse(value);
-    }
-}
-
-
-
-// let ratingStorage = () => {
-//     if (localStorage.getItem('rating') != null)
-//     document.querySelector('input').value = rating
-// }
 
 
