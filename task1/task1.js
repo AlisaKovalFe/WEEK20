@@ -138,7 +138,7 @@ function addRate() {
 
                 let hero = 'Рейтинг ' + input.parentElement.previousElementSibling.firstElementChild.innerHTML
                 
-                input.parentElement.innerHTML = 'Рейтинг фильма: ' + rating
+                input.parentElement.innerHTML = 'Рейтинг персонажа: ' + rating
 
                 localStorage.setItem( hero, input.value)
 
